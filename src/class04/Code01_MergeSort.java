@@ -51,24 +51,24 @@ public class Code01_MergeSort {
 		}
 		int N = arr.length;
 		// 步长
-		int mergeSize = 1;
-		while (mergeSize < N) { // log N
+		int step = 1;
+		while (step < N) { // log N
 			// 当前左组的，第一个位置
 			int L = 0;
 			while (L < N) {
-				if (mergeSize >= N - L) {
+				int M = L + step - 1;
+				if (M >= N) {
 					break;
 				}
-				int M = L + mergeSize - 1;
-				int R = M + Math.min(mergeSize, N - M - 1);
+				int R = Math.min(M + step, N - 1);
 				merge(arr, L, M, R);
 				L = R + 1;
 			}
 			// 防止溢出
-			if (mergeSize > N / 2) {
+			if (step > N / 2) {
 				break;
 			}
-			mergeSize <<= 1;
+			step <<= 1;
 		}
 	}
 
