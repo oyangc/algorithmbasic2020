@@ -4,6 +4,7 @@ package class05;
 // https://leetcode.com/problems/count-of-range-sum/
 public class Code01_CountOfRangeSum {
 
+
     public static int countRangeSum(int[] nums, int lower, int upper) {
         if (nums == null || nums.length == 0) {
             return 0;
@@ -21,8 +22,7 @@ public class Code01_CountOfRangeSum {
             return sum[L] >= lower && sum[L] <= upper ? 1 : 0;
         }
         int M = L + ((R - L) >> 1);
-        return process(sum, L, M, lower, upper) + process(sum, M + 1, R, lower, upper)
-                + merge(sum, L, M, R, lower, upper);
+        return process(sum, L, M, lower, upper) + process(sum, M + 1, R, lower, upper) + merge(sum, L, M, R, lower, upper);
     }
 
     public static int merge(long[] arr, int L, int M, int R, int lower, int upper) {
@@ -39,8 +39,9 @@ public class Code01_CountOfRangeSum {
             while (windowL <= M && arr[windowL] < min) {
                 windowL++;
             }
-            ans += Math.max(0, windowR - windowL);
+            ans += windowR - windowL;
         }
+
         long[] help = new long[R - L + 1];
         int i = 0;
         int p1 = L;
